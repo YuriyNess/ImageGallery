@@ -64,24 +64,15 @@ extension GalleryViewController: UICollectionViewDelegateFlowLayout, UICollectio
                 self?.model.savePersistent(link: link)
             }
                 collectionView.reloadItems(at: [indexPath])
-            }) { [weak self] error in
-            if let error = error as? ImgurApiError, let _ = collectionView.cellForItem(at: indexPath) {
-                if case let ImgurApiError.upload(message) = error {
-                    self?.showAlert(title: "Error", message: message)
-                }
-            } else {
-                self?.showAlert(title: "Error", message: error?.localizedDescription ?? "")
+        }) { [weak self] error in
+            let presentationError = PresentationError(code: .didSelectItemAt, underlying: error)
+            let tracker = ErrorTracker(error: presentationError)
+            if let _ = collectionView.cellForItem(at: indexPath), let strongSelf = self {
+                tracker.showUser(presenter: strongSelf)
             }
+
             collectionView.reloadItems(at: [indexPath])
         }
-    }
-    
-    private func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (_) in
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

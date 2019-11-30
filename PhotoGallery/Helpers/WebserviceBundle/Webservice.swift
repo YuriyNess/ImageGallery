@@ -17,13 +17,15 @@ final class Webservice: NSObject {
         guard let request = createGetRequest(resource: resource) else { return }
         session.dataTask(with: request) { (data, response, error) in
             guard let data = data, error == nil else {
-                errorComplition(error)
+                let webError = WebserviceError(code: .get, underlying: error)
+                errorComplition(webError)
                 return
             }
             do {
                 try completion(resource.parse(data))
             } catch {
-                self.errorPresenter?(error)
+                let webError = WebserviceError(code: .get, underlying: error)
+                errorComplition(webError)
             }
         }.resume()
     }
@@ -32,13 +34,15 @@ final class Webservice: NSObject {
         guard let request = createPostRequest(resource: resource) else { return }
         session.dataTask(with: request) { (data, response, error) in
             guard let data = data, error == nil else {
-                errorComplition(error)
+                let webError = WebserviceError(code: .post, underlying: error)
+                errorComplition(webError)
                 return
             }
             do {
                 try completion(resource.parse(data))
             } catch {
-                self.errorPresenter?(error)
+                let webError = WebserviceError(code: .post, underlying: error)
+                errorComplition(webError)
             }
         }.resume()
     }

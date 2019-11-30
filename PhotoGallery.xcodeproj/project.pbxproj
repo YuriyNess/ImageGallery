@@ -32,6 +32,10 @@
 		82B6A3B12391626C004DEF59 /* LinksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B6A3B02391626C004DEF59 /* LinksViewController.swift */; };
 		82B6A3B7239166F7004DEF59 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B6A3B6239166F7004DEF59 /* Link.swift */; };
 		82B6A3B92391671D004DEF59 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B6A3B82391671D004DEF59 /* ImageCollectionViewCell.swift */; };
+		82B6A3E523928A0B004DEF59 /* PresentationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B6A3E223928A0B004DEF59 /* PresentationError.swift */; };
+		82B6A3E623928A0B004DEF59 /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B6A3E323928A0B004DEF59 /* ErrorTracker.swift */; };
+		82B6A3E723928A0B004DEF59 /* BaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B6A3E423928A0B004DEF59 /* BaseError.swift */; };
+		82B6A3E92392B135004DEF59 /* WebserviceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B6A3E82392B135004DEF59 /* WebserviceError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +67,10 @@
 		82B6A3B02391626C004DEF59 /* LinksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinksViewController.swift; sourceTree = "<group>"; };
 		82B6A3B6239166F7004DEF59 /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
 		82B6A3B82391671D004DEF59 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		82B6A3E223928A0B004DEF59 /* PresentationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationError.swift; sourceTree = "<group>"; };
+		82B6A3E323928A0B004DEF59 /* ErrorTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
+		82B6A3E423928A0B004DEF59 /* BaseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseError.swift; sourceTree = "<group>"; };
+		82B6A3E82392B135004DEF59 /* WebserviceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebserviceError.swift; sourceTree = "<group>"; };
 		9E7D7633177207B06BBE48F8 /* Pods_PhotoGallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoGallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -124,6 +132,7 @@
 		824E4FFD238D8668008D7ADA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				82B6A3E023928A0B004DEF59 /* ErrorHandling */,
 				824E501923910821008D7ADA /* ThreadingOperations */,
 				824E5003238D8668008D7ADA /* WebserviceBundle */,
 				824E5007238D8668008D7ADA /* Storyboarded.swift */,
@@ -137,6 +146,7 @@
 				824E5004238D8668008D7ADA /* Resource.swift */,
 				824E5005238D8668008D7ADA /* Webservice.swift */,
 				824E5006238D8668008D7ADA /* ResourceBuilder.swift */,
+				82B6A3E82392B135004DEF59 /* WebserviceError.swift */,
 			);
 			path = WebserviceBundle;
 			sourceTree = "<group>";
@@ -231,6 +241,24 @@
 				82B6A3B6239166F7004DEF59 /* Link.swift */,
 			);
 			path = ModelObject;
+			sourceTree = "<group>";
+		};
+		82B6A3E023928A0B004DEF59 /* ErrorHandling */ = {
+			isa = PBXGroup;
+			children = (
+				82B6A3E123928A0B004DEF59 /* ModulesErrors */,
+				82B6A3E323928A0B004DEF59 /* ErrorTracker.swift */,
+				82B6A3E423928A0B004DEF59 /* BaseError.swift */,
+			);
+			path = ErrorHandling;
+			sourceTree = "<group>";
+		};
+		82B6A3E123928A0B004DEF59 /* ModulesErrors */ = {
+			isa = PBXGroup;
+			children = (
+				82B6A3E223928A0B004DEF59 /* PresentationError.swift */,
+			);
+			path = ModulesErrors;
 			sourceTree = "<group>";
 		};
 		A6AEDDEA2DC3994170000CF2 /* Pods */ = {
@@ -359,9 +387,12 @@
 			files = (
 				824E5013238D8668008D7ADA /* Webservice.swift in Sources */,
 				824E501F23910822008D7ADA /* ImageDownloader.swift in Sources */,
+				82B6A3E523928A0B004DEF59 /* PresentationError.swift in Sources */,
 				82B6A3A723911C0D004DEF59 /* ImageUploader.swift in Sources */,
 				82B6A3B92391671D004DEF59 /* ImageCollectionViewCell.swift in Sources */,
 				82B6A3A923911C4D004DEF59 /* ImageUpLoadingRequestsProtocol.swift in Sources */,
+				82B6A3E623928A0B004DEF59 /* ErrorTracker.swift in Sources */,
+				82B6A3E723928A0B004DEF59 /* BaseError.swift in Sources */,
 				824E4FEE238D81A9008D7ADA /* GalleryViewController.swift in Sources */,
 				824E4FEC238D81A9008D7ADA /* AppDelegate.swift in Sources */,
 				82B6A3AB23911C68004DEF59 /* ImageUpLoadingRequests.swift in Sources */,
@@ -376,6 +407,7 @@
 				824E501E23910822008D7ADA /* OperationsFactory.swift in Sources */,
 				824E5014238D8668008D7ADA /* ResourceBuilder.swift in Sources */,
 				824E5017238D8668008D7ADA /* ImageLoadingRequests.swift in Sources */,
+				82B6A3E92392B135004DEF59 /* WebserviceError.swift in Sources */,
 				824E5016238D8668008D7ADA /* ImageRresourceFactory.swift in Sources */,
 				82B6A3B7239166F7004DEF59 /* Link.swift in Sources */,
 			);

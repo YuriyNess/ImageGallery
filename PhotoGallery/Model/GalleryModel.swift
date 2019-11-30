@@ -10,6 +10,16 @@ import Foundation
 import Photos
 import RealmSwift
 
+enum GalleryModelErrorCode: Int, BaseErrorCode {
+    case upload = 0
+}
+
+class GalleryModelError: BaseError<GalleryModelErrorCode> {
+    override func domainShortname() -> String {
+        return "GM"
+    }
+}
+
 class GalleryModel {
     
     var allPhotos : PHFetchResult<PHAsset>? = nil
@@ -36,7 +46,9 @@ class GalleryModel {
     }
     
     func upload(name: String, title: String, image: UIImage, indexPath: IndexPath, complition: ((Any)->Void)?, errorComplition: ((Error?)->Void)?) {
-        uplodOperations.startImageUpLoadOperation(imageName: name, imageTitle: title, image: image, indexPath: indexPath, complition: complition, errorComplition: errorComplition)
+        uplodOperations.startImageUpLoadOperation(imageName: name, imageTitle: title, image: image, indexPath: indexPath, complition: complition, errorComplition: { error in
+            errorComplition?(GalleryModelError(code: .upload, underlying: error))
+        })
         updateOnLoadingState?(indexPath)
     }
     

@@ -8,9 +8,15 @@
 
 import UIKit
 
-enum ImgurApiError: Error {
-    case upload(message: String)
+enum ImgurApiErrorCode: Int, BaseErrorCode {
+    case upload
     case parsing
+}
+
+class ImgurApiError: BaseError<ImgurApiErrorCode> {
+    override func domainShortname() -> String {
+        return "ImgurAPI"
+    }
 }
 
 final class ImageImgurUploadResourceFactory {
@@ -24,16 +30,16 @@ final class ImageImgurUploadResourceFactory {
         let headers = ["Authorization": "Client-ID \(clientId)", "Content-Type": "application/json; charset=utf-8"]
         let imageData = image.pngData()!.base64EncodedString(options: .lineLength64Characters)
         let params = ["image": imageData, "name": imageName, "title": imageTitle, "type":"base64"] as [String : Any]
-        
         return try! ResourceBuilder<Result<String, ImgurApiError>>().with(url: url)
             .with(headers: headers)
             .with(params: params)
             .with(parse: { (response) -> Result<String, ImgurApiError> in
-                guard let response = response as? [String: Any], let imageDic = response["data"] as? [String:Any] else { return .failure(.parsing) }
+                guard let response = response as? [String: Any], let imageDic = response["data"] as? [String:Any] else { return .failure(ImgurApiError(code: .parsing)) }
+                
                 if let responseError = imageDic["error"] as? [String:Any] {
                     let message = responseError["message"] as? String ?? ""
                     let errorCode = responseError["status"] as? String ?? ""
-                    return .failure(.upload(message: "\(message) code:\(errorCode)"))
+                    return .failure(ImgurApiError(code: .upload, systemMsg: message, statusCode: errorCode))
                 } else {
                     let link = imageDic["link"] as? String ?? ""
                     return .success(link)

@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoGallery/Web/ResourceFactories/ImageImgurUploadResourceFactory.swift"
-            timestampString = "596731475.184341"
+            timestampString = "596816256.6499079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "resource(imageName:imageTitle:image:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../ImageGridApp/ImageGridApp/Helpers/ThreadingOperations/Operations/ImageUploader.swift"
-            timestampString = "596728281.3886"
+            timestampString = "596816256.6503741"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "main()"
             landmarkType = "7">
          </BreakpointContent>
