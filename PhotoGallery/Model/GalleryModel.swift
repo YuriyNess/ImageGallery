@@ -10,16 +10,6 @@ import Foundation
 import Photos
 import RealmSwift
 
-enum GalleryModelErrorCode: Int, BaseErrorCode {
-    case upload = 0
-}
-
-class GalleryModelError: BaseError<GalleryModelErrorCode> {
-    override func domainShortname() -> String {
-        return "GM"
-    }
-}
-
 class GalleryModel {
     
     var allPhotos : PHFetchResult<PHAsset>? = nil

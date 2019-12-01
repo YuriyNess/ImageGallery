@@ -8,14 +8,14 @@
 
 import UIKit
 
-class ErrorTracker {
-    var error: PresentationError
-    init(error: PresentationError) {
+class ErrorTrace {
+    var error: NSError
+    init(error: NSError) {
         self.error = error
     }
     
     func showUser(presenter: UIViewController) {
-        let message = "\(makeMessageChain())\n\(makeDescriptionChain())"  
+        let message = "\(makeMessageChain())\n\(makeUrlChain())\n\(makeShortCodeChain())"
         presenter.showErrorAlert(title: "Error", message: message)
     }
     
@@ -31,15 +31,43 @@ class ErrorTracker {
         return shortnameChain(error: error)
     }
     
-    func makeDescriptionChain() -> String {
-        return descriptionChain(error: error)
+    func makeFuncTraceChain() -> String {
+        return funcTraceChain(error: error)
     }
     
-    private func descriptionChain(error: NSError) -> String {
+    func makeShortCodeChain() -> String {
+        return shortCodeChain(error: error)
+    }
+    
+    func makeUrlChain() -> String {
+        return urlChain(error: error)
+    }
+
+    private func urlChain(error: NSError) -> String {
+        let url = error.userInfo[BaseErrorInfoKeys.errorUrl] as? String ?? ""
+        if let parentError = error.userInfo[BaseErrorInfoKeys.underlyingError] as? NSError {
+            let chain = urlChain(error: parentError)
+            return url == "" ? (chain) : (chain + "\n" + url)
+        } else {
+            return url
+        }
+    }
+    
+    private func shortCodeChain(error: NSError) -> String {
+        let shortName = error.userInfo[BaseErrorInfoKeys.domainShortname] as? String ?? ""
+        let errorCode = "\(error.code)"
+        if let parentError = error.userInfo[BaseErrorInfoKeys.underlyingError] as? NSError {
+            return shortCodeChain(error: parentError) + "/" + shortName + " " + errorCode
+        } else {
+            return shortName + " " + errorCode
+        }
+    }
+    
+    private func funcTraceChain(error: NSError) -> String {
         let shortName = error.userInfo[BaseErrorInfoKeys.domainShortname] as? String ?? ""
         let errorCase = error.userInfo[BaseErrorInfoKeys.errorCase] as? String ?? ""
         if let parentError = error.userInfo[BaseErrorInfoKeys.underlyingError] as? NSError {
-            return descriptionChain(error: parentError) + "/" + shortName + "+" + errorCase
+            return funcTraceChain(error: parentError) + "/" + shortName + "+" + errorCase
         } else {
             return shortName + "+" + errorCase
         }

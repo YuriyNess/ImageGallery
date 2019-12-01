@@ -8,17 +8,6 @@
 
 import UIKit
 
-enum ImgurApiErrorCode: Int, BaseErrorCode {
-    case upload
-    case parsing
-}
-
-class ImgurApiError: BaseError<ImgurApiErrorCode> {
-    override func domainShortname() -> String {
-        return "ImgurAPI"
-    }
-}
-
 final class ImageImgurUploadResourceFactory {
     
     private let clientId = "530f884ed46bf57"
@@ -34,8 +23,7 @@ final class ImageImgurUploadResourceFactory {
             .with(headers: headers)
             .with(params: params)
             .with(parse: { (response) -> Result<String, ImgurApiError> in
-                guard let response = response as? [String: Any], let imageDic = response["data"] as? [String:Any] else { return .failure(ImgurApiError(code: .parsing)) }
-                
+                guard let response = response as? [String: Any], let imageDic = response["data"] as? [String:Any] else { return .failure(ImgurApiError(code: .parsing, systemMsg: "Unable to parse server response.")) }
                 if let responseError = imageDic["error"] as? [String:Any] {
                     let message = responseError["message"] as? String ?? ""
                     let errorCode = responseError["status"] as? String ?? ""

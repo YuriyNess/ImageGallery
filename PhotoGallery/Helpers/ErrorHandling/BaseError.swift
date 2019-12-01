@@ -15,7 +15,8 @@ extension BaseErrorCode  {
 
 struct BaseErrorInfoKeys {
     static let underlyingError: String = NSUnderlyingErrorKey
-    static let errorMessage: String = NSLocalizedFailureReasonErrorKey
+    static let errorMessage: String = "NSLocalizedDescription"//NSLocalizedFailureReasonErrorKey
+    static let errorUrl: String = "NSErrorFailingURLStringKey"
     static let domainShortname: String = "domainShortname"
     static let statusCode: String = "statusCode" // external api error keys
     static let errorCase: String = "errorCase"

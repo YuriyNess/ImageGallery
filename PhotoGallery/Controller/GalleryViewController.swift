@@ -21,13 +21,13 @@ class GalleryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.setRightBarButton(UIBarButtonItem(title: "Links", style: .plain, target: self, action: #selector(handlebbItemTap)), animated: false)
+        navigationItem.setRightBarButton(UIBarButtonItem(title: "Links", style: .plain, target: self, action: #selector(handleRightBarBattonItemTap)), animated: false)
         setupModelComplitions()
         model.load()
     }
     
     @objc
-    private func handlebbItemTap() {
+    private func handleRightBarBattonItemTap() {
         let vc = LinksViewController()
         vc.links = model.loadPersistentLinks()
         navigationController?.pushViewController(vc, animated: true)
@@ -63,10 +63,10 @@ extension GalleryViewController: UICollectionViewDelegateFlowLayout, UICollectio
             if let link = linkStr as? String {
                 self?.model.savePersistent(link: link)
             }
-                collectionView.reloadItems(at: [indexPath])
+            collectionView.reloadItems(at: [indexPath])
         }) { [weak self] error in
             let presentationError = PresentationError(code: .didSelectItemAt, underlying: error)
-            let tracker = ErrorTracker(error: presentationError)
+            let tracker = ErrorTrace(error: presentationError)
             if let _ = collectionView.cellForItem(at: indexPath), let strongSelf = self {
                 tracker.showUser(presenter: strongSelf)
             }

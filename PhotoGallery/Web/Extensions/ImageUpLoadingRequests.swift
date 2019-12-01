@@ -8,16 +8,6 @@
 
 import UIKit
 
-enum ImageUpLoadingRequestsErrorCode: Int, BaseErrorCode {
-    case performUpLoadImage
-}
-
-class ImageUpLoadingRequestsError: BaseError<ImageUpLoadingRequestsErrorCode> {
-    override func domainShortname() -> String {
-        return "ULR"
-    }
-}
-
 extension Webservice: ImageUpLoadingRequests {
     func performUpLoadImage(name: String, title: String, image: UIImage, resFactory: ImageImgurUploadResourceFactory, complition: @escaping (String)-> Void, errorComplition: @escaping (Error?) -> Void) {
         guard let res = resFactory.resource(imageName: name, imageTitle: title, image: image) else { return }
