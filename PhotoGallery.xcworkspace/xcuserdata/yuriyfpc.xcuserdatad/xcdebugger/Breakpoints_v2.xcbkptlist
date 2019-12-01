@@ -170,7 +170,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoGallery/Web/ResourceFactories/ImageImgurUploadResourceFactory.swift"
-            timestampString = "596885978.020155"
+            timestampString = "596901436.893996"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
@@ -192,6 +192,22 @@
             startingLineNumber = "34"
             endingLineNumber = "34"
             landmarkName = "main()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PhotoGallery/Helpers/ThreadingOperations/ImageLoadOperations.swift"
+            timestampString = "596901436.894591"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "startImageLoadOperation(url:indexPath:complition:errorComplition:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

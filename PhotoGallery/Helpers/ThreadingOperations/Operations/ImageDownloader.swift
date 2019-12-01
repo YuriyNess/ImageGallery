@@ -37,7 +37,7 @@ final class ImageDownloader: Operation {
             } else {
                 if let errorHandler = self?.loadingErrorHandler {
                     DispatchQueue.main.async {
-                        errorHandler(nil)
+                        errorHandler(ImageUploaderError(code: .main, systemMsg: "Empty data returned from server"))
                     }
                 }
             }
@@ -45,7 +45,7 @@ final class ImageDownloader: Operation {
             if self?.isCancelled == true { return }
             if let errorHandler = self?.loadingErrorHandler {
                 DispatchQueue.main.async {
-                    errorHandler(error)
+                    errorHandler(ImageUploaderError(code: .main, underlying: error))
                 }
             }
         }

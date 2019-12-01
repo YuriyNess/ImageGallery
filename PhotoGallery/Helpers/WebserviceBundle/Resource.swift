@@ -11,7 +11,7 @@ import UIKit
 
 struct Resource<A> {
     let url: URL
-    let parse: (Data) -> A?
+    let parse: (Data) throws ->  A?
     let params: [String: Any]?
     let headers: [String: String]?
     
@@ -27,8 +27,12 @@ struct Resource<A> {
         self.params = params
         self.headers = headers
         self.parse = { data in
-            let json = try? JSONSerialization.jsonObject(with: data as Data, options: [])
-            return json.flatMap(parseJSON)
+            do {
+                let json = try JSONSerialization.jsonObject(with: data as Data, options: [])
+                return parseJSON(json)//json.flatMap(parseJSON)
+            } catch {
+                throw ResourceError(code: .parse, underlying: error, systemMsg: "Unable to parse data to JSON")
+            }
         }
     }
 }

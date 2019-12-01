@@ -20,13 +20,19 @@ struct BaseErrorInfoKeys {
     static let domainShortname: String = "domainShortname"
     static let statusCode: String = "statusCode" // external api error keys
     static let errorCase: String = "errorCase"
+    static let userMessage: String = "userMessage"
 }
 
 open class BaseError<ErrorCode: BaseErrorCode>: NSError {
     
-    public required init(code: ErrorCode, underlying: Error? = nil, systemMsg: String? = nil, statusCode: String? = nil) {
+    public required init(code: ErrorCode, underlying: Error? = nil, systemMsg: String? = nil, statusCode: String? = nil, userMessage: String? = nil) {
         super.init(domain: "", code: code.rawValue, userInfo: nil)
-        let userInfo = [BaseErrorInfoKeys.underlyingError: underlying as Any, BaseErrorInfoKeys.errorMessage: systemMsg as Any, BaseErrorInfoKeys.domainShortname: domainShortname(), BaseErrorInfoKeys.statusCode: statusCode ?? "", BaseErrorInfoKeys.errorCase: code.errorCase] as [String : Any]
+        let userInfo = [BaseErrorInfoKeys.underlyingError: underlying as Any,
+                        BaseErrorInfoKeys.errorMessage: systemMsg as Any,
+                        BaseErrorInfoKeys.domainShortname: domainShortname(),
+                        BaseErrorInfoKeys.statusCode: statusCode ?? "",
+                        BaseErrorInfoKeys.errorCase: code.errorCase,
+                        BaseErrorInfoKeys.userMessage: userMessage ?? ""] as [String : Any]
         super.setValue(domain, forKeyPath: #keyPath(NSError.domain))
         super.setValue(userInfo, forKeyPath: #keyPath(NSError.userInfo))
     }

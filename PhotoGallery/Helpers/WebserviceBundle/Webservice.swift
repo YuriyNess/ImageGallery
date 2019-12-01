@@ -31,20 +31,25 @@ final class Webservice: NSObject {
     }
     
     func post<A>(resource: Resource<A>, completion: @escaping (A?) throws -> (), errorComplition: @escaping (Error?) -> ()) {
-        guard let request = createPostRequest(resource: resource) else { return }
-        session.dataTask(with: request) { (data, response, error) in
-            guard let data = data, error == nil else {
-                let webError = WebserviceError(code: .post, underlying: error)
-                errorComplition(webError)
-                return
-            }
-            do {
-                try completion(resource.parse(data))
-            } catch {
-                let webError = WebserviceError(code: .post, underlying: error)
-                errorComplition(webError)
-            }
-        }.resume()
+        
+        do {
+            guard let request = try createPostRequest(resource: resource) else { return }
+            session.dataTask(with: request) { (data, response, error) in
+                guard let data = data, error == nil else {
+                    let webError = WebserviceError(code: .post, underlying: error)
+                    errorComplition(webError)
+                    return
+                }
+                do {
+                    try completion(resource.parse(data))
+                } catch {
+                    let webError = WebserviceError(code: .post, underlying: error)
+                    errorComplition(webError)
+                }
+            }.resume()
+        } catch {
+            errorComplition(error)
+        }
     }
     
 }
@@ -67,16 +72,16 @@ extension Webservice {
         return request
     }
     
-    private func createPostRequest<A>(resource: Resource<A>) -> URLRequest? {
+    private func createPostRequest<A>(resource: Resource<A>) throws -> URLRequest? {
         var request = URLRequest(url: resource.url)
         request.httpMethod = "POST"
         
         if let params = resource.params {
-            do {
-                request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
-            } catch {
-                print("ERROR:- Webservice/createPostRequest/JSONSerialization of data: ", error)
-            }
+                if JSONSerialization.isValidJSONObject(params) {
+                    request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+                } else {
+                    throw WebserviceError(code: .createPostRequest, systemMsg: "Unable to serialize request params")
+                }
         }
         
         if let headers = resource.headers {

@@ -42,6 +42,19 @@ class ErrorTrace {
     func makeUrlChain() -> String {
         return urlChain(error: error)
     }
+    
+    func makeUserMessageChain() -> String {
+        return userMessageChain(error: error)
+    }
+    
+    private func userMessageChain(error: NSError) -> String {
+        let message = error.userInfo[BaseErrorInfoKeys.userMessage] as? String ?? ""
+        if let parentError = error.userInfo[BaseErrorInfoKeys.underlyingError] as? NSError {
+            return userMessageChain(error: parentError) + " " + message
+        } else {
+            return message
+        }
+    }
 
     private func urlChain(error: NSError) -> String {
         let url = error.userInfo[BaseErrorInfoKeys.errorUrl] as? String ?? ""

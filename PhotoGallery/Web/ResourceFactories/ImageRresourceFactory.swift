@@ -9,11 +9,15 @@
 import Foundation
 
 final class ImageRresourceFactory {
-    func resource(url: String) -> Resource<Data>? {
+    func resource(url: String) -> Resource<Result<Data, ImageRresourceFactoryError>>? {
         guard let url = URL(string: url) else { return nil }
-        return try! ResourceBuilder<Data>().with(url: url)
-            .with(parse: { (data) -> Data? in
-                return data as? Data
+        return try! ResourceBuilder<Result<Data, ImageRresourceFactoryError>>().with(url: url)
+            .with(parse: { (data) -> Result<Data, ImageRresourceFactoryError> in
+                if let data = data as? Data {
+                    return .success(data)
+                } else {
+                    return .failure(ImageRresourceFactoryError(code: .parsing))
+                }
             }).build(.Data)
     }
 }

@@ -26,16 +26,16 @@ final class ImageLoadOperations {
         self.resourceFactory = resourceFactory
     }
     
-    func startImageLoadOperation(url: String, indexPath: IndexPath, complition: ((Data?)->Void)?) {
+    func startImageLoadOperation(url: String, indexPath: IndexPath, complition: ((Data?)->Void)?, errorComplition: ((Error?)->Void)?) {
         guard let operation = downloadsInProgress[indexPath] as? ImageDownloader else {
             let operation = createImageLoadOperation(url: url, indexPath: indexPath)
             operation.loadingCompleteHandler = { [weak self] data in
+                self?.purgeOperation(indexPath: indexPath)
                 complition?(data)
-                self?.purgeOperation(indexPath: indexPath)
             }
-            operation.loadingErrorHandler = { [weak self, complition] error in
-                complition?(nil)
+            operation.loadingErrorHandler = { [weak self] error in
                 self?.purgeOperation(indexPath: indexPath)
+                errorComplition?(ImageLoadOperationsError(code: .startImageLoadOperation, underlying: error))
             }
             return
         }

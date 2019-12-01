@@ -41,6 +41,11 @@
 		82B6A3FF2393C600004DEF59 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B6A3FA2393C600004DEF59 /* ImageDownloader.swift */; };
 		82B6A4002393C600004DEF59 /* ImageLoadOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B6A3FB2393C600004DEF59 /* ImageLoadOperations.swift */; };
 		82B6A4012393C600004DEF59 /* ImageUploadOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B6A3FC2393C600004DEF59 /* ImageUploadOperations.swift */; };
+		82B6A4032393CCAD004DEF59 /* ResourceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B6A4022393CCAD004DEF59 /* ResourceError.swift */; };
+		82B6A4082393F760004DEF59 /* ImageLoadOperationsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B6A4072393F760004DEF59 /* ImageLoadOperationsError.swift */; };
+		82B6A40A2393F825004DEF59 /* ImageDownloaderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B6A4092393F825004DEF59 /* ImageDownloaderError.swift */; };
+		82B6A40C2393FD17004DEF59 /* ImageRresourceFactoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B6A40B2393FD17004DEF59 /* ImageRresourceFactoryError.swift */; };
+		82B6A40E2393FDB4004DEF59 /* ImageLoadingRequestsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B6A40D2393FDB4004DEF59 /* ImageLoadingRequestsError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +86,11 @@
 		82B6A3FA2393C600004DEF59 /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		82B6A3FB2393C600004DEF59 /* ImageLoadOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoadOperations.swift; sourceTree = "<group>"; };
 		82B6A3FC2393C600004DEF59 /* ImageUploadOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploadOperations.swift; sourceTree = "<group>"; };
+		82B6A4022393CCAD004DEF59 /* ResourceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceError.swift; sourceTree = "<group>"; };
+		82B6A4072393F760004DEF59 /* ImageLoadOperationsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadOperationsError.swift; sourceTree = "<group>"; };
+		82B6A4092393F825004DEF59 /* ImageDownloaderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloaderError.swift; sourceTree = "<group>"; };
+		82B6A40B2393FD17004DEF59 /* ImageRresourceFactoryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRresourceFactoryError.swift; sourceTree = "<group>"; };
+		82B6A40D2393FDB4004DEF59 /* ImageLoadingRequestsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadingRequestsError.swift; sourceTree = "<group>"; };
 		9E7D7633177207B06BBE48F8 /* Pods_PhotoGallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoGallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -244,13 +254,11 @@
 		82B6A3E123928A0B004DEF59 /* ModulesErrors */ = {
 			isa = PBXGroup;
 			children = (
-				82B6A3E82392B135004DEF59 /* WebserviceError.swift */,
+				82B6A4052393F550004DEF59 /* WebserviceBundleErrors */,
+				82B6A4042393F50B004DEF59 /* ThreadingOperationsErrors */,
+				82B6A4062393F5A8004DEF59 /* Web */,
 				82B6A3E223928A0B004DEF59 /* PresentationError.swift */,
-				82B6A3EA2393B57B004DEF59 /* ImgurApiError.swift */,
 				82B6A3EC2393B5B8004DEF59 /* GalleryModelError.swift */,
-				82B6A3EE2393B5E0004DEF59 /* ImageUploaderError.swift */,
-				82B6A3F02393B60C004DEF59 /* ImageUploadOperationsError.swift */,
-				82B6A3F42393B671004DEF59 /* ImageUpLoadingRequestsError.swift */,
 			);
 			path = ModulesErrors;
 			sourceTree = "<group>";
@@ -273,6 +281,37 @@
 				82B6A3FA2393C600004DEF59 /* ImageDownloader.swift */,
 			);
 			path = Operations;
+			sourceTree = "<group>";
+		};
+		82B6A4042393F50B004DEF59 /* ThreadingOperationsErrors */ = {
+			isa = PBXGroup;
+			children = (
+				82B6A3EE2393B5E0004DEF59 /* ImageUploaderError.swift */,
+				82B6A3F02393B60C004DEF59 /* ImageUploadOperationsError.swift */,
+				82B6A4092393F825004DEF59 /* ImageDownloaderError.swift */,
+				82B6A4072393F760004DEF59 /* ImageLoadOperationsError.swift */,
+			);
+			path = ThreadingOperationsErrors;
+			sourceTree = "<group>";
+		};
+		82B6A4052393F550004DEF59 /* WebserviceBundleErrors */ = {
+			isa = PBXGroup;
+			children = (
+				82B6A3E82392B135004DEF59 /* WebserviceError.swift */,
+				82B6A4022393CCAD004DEF59 /* ResourceError.swift */,
+			);
+			path = WebserviceBundleErrors;
+			sourceTree = "<group>";
+		};
+		82B6A4062393F5A8004DEF59 /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				82B6A3EA2393B57B004DEF59 /* ImgurApiError.swift */,
+				82B6A3F42393B671004DEF59 /* ImageUpLoadingRequestsError.swift */,
+				82B6A40B2393FD17004DEF59 /* ImageRresourceFactoryError.swift */,
+				82B6A40D2393FDB4004DEF59 /* ImageLoadingRequestsError.swift */,
+			);
+			path = Web;
 			sourceTree = "<group>";
 		};
 		A6AEDDEA2DC3994170000CF2 /* Pods */ = {
@@ -409,6 +448,7 @@
 				82B6A3A923911C4D004DEF59 /* ImageUpLoadingRequestsProtocol.swift in Sources */,
 				82B6A3E623928A0B004DEF59 /* ErrorTrace.swift in Sources */,
 				82B6A3E723928A0B004DEF59 /* BaseError.swift in Sources */,
+				82B6A4082393F760004DEF59 /* ImageLoadOperationsError.swift in Sources */,
 				82B6A4002393C600004DEF59 /* ImageLoadOperations.swift in Sources */,
 				82B6A3EF2393B5E0004DEF59 /* ImageUploaderError.swift in Sources */,
 				824E4FEE238D81A9008D7ADA /* GalleryViewController.swift in Sources */,
@@ -420,12 +460,16 @@
 				824E5012238D8668008D7ADA /* Resource.swift in Sources */,
 				82B6A3EB2393B57B004DEF59 /* ImgurApiError.swift in Sources */,
 				82B6A3B12391626C004DEF59 /* LinksViewController.swift in Sources */,
+				82B6A40C2393FD17004DEF59 /* ImageRresourceFactoryError.swift in Sources */,
 				824E5015238D8668008D7ADA /* Storyboarded.swift in Sources */,
+				82B6A40A2393F825004DEF59 /* ImageDownloaderError.swift in Sources */,
 				824E5018238D8668008D7ADA /* ImageLoadingRequestsProtocol.swift in Sources */,
+				82B6A40E2393FDB4004DEF59 /* ImageLoadingRequestsError.swift in Sources */,
 				824E5014238D8668008D7ADA /* ResourceBuilder.swift in Sources */,
 				824E5017238D8668008D7ADA /* ImageLoadingRequests.swift in Sources */,
 				82B6A3FD2393C600004DEF59 /* OperationsFactory.swift in Sources */,
 				82B6A3FE2393C600004DEF59 /* ImageUploader.swift in Sources */,
+				82B6A4032393CCAD004DEF59 /* ResourceError.swift in Sources */,
 				82B6A3E92392B135004DEF59 /* WebserviceError.swift in Sources */,
 				824E5016238D8668008D7ADA /* ImageRresourceFactory.swift in Sources */,
 				82B6A3B7239166F7004DEF59 /* Link.swift in Sources */,

@@ -16,9 +16,17 @@ extension Webservice: ImageLoadingRequests {
         if let data = dataCache.object(forKey: resource.url.absoluteString as NSString) as? Data {
             complition(data)
         } else {
-            get(resource: resource, completion: { (data) in
-                dataCache.setObject(data as AnyObject, forKey: resource.url.absoluteString as NSString)
-                complition(data)
+            get(resource: resource, completion: { (response) in                
+                if let r = response {
+                    switch r {
+                    case .success(let data):
+                        dataCache.setObject(data as AnyObject, forKey: resource.url.absoluteString as NSString)
+                        complition(data)
+                    case .failure(let error):
+                        errorComplition(ImageLoadingRequestsError(code: .performUpLoadImage, underlying: error))
+                    }
+                }
+                
             }) { (error) in
                 errorComplition(error)
             }

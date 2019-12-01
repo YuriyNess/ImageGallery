@@ -11,6 +11,7 @@ import Foundation
 enum WebserviceErrorCode: Int, BaseErrorCode {
     case post
     case get
+    case createPostRequest
 }
 
 class WebserviceError: BaseError<WebserviceErrorCode> {
