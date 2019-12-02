@@ -11,6 +11,7 @@ import UIKit
 
 final class ImageUploadOperations {
     lazy var uploadsInProgress: [IndexPath: Operation] = [:]
+
     lazy var uploadQueue: OperationQueue = {
         var queue = OperationQueue()
         queue.name = "Upload queue"
@@ -20,11 +21,14 @@ final class ImageUploadOperations {
     private let operationsFactory: OperationsFactory
     private let service: ImageUpLoadingRequests
     private let resourceFactory: ImageImgurUploadResourceFactory
+    private var isSequentialUpload: Bool = false
+    private var previousOperation: Operation?
     
     init(operationsFactory: OperationsFactory, service: ImageUpLoadingRequests, resourceFactory: ImageImgurUploadResourceFactory, isSequentialUpload: Bool) {
         self.operationsFactory = operationsFactory
         self.service = service
         self.resourceFactory = resourceFactory
+        self.isSequentialUpload = isSequentialUpload
         uploadQueue.maxConcurrentOperationCount = isSequentialUpload == true ? 1 : 30
     }
     

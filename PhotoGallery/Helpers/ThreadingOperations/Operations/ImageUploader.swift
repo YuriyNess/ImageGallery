@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-final class ImageUploader: Operation {
+final class ImageUploader: AsyncOperation {
     var data: Any?
     var loadingCompleteHandler: ((Any) ->Void)?
     var loadingErrorHandler: ((Error?) -> Void)?
@@ -26,6 +26,7 @@ final class ImageUploader: Operation {
         self.image = image
         self.imageTitle = imageTitle
         self.imageName = imageName
+        super.init()
     }
     
     override func main() {
@@ -36,6 +37,7 @@ final class ImageUploader: Operation {
             if let loadingCompleteHandler = self?.loadingCompleteHandler {
                 DispatchQueue.main.async {
                     loadingCompleteHandler(data)
+                    self?.state = .finished
                 }
             }
         }) { [weak self] (error) in
@@ -43,6 +45,7 @@ final class ImageUploader: Operation {
             if let errorHandler = self?.loadingErrorHandler {
                 DispatchQueue.main.async {
                     errorHandler(ImageUploaderError(code: .main, underlying: error))
+                    self?.state = .finished
                 }
             }
         }

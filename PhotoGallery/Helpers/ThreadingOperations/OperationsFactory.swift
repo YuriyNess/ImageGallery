@@ -17,3 +17,4 @@ final class OperationsFactory {
         return ImageUploader(service: service, resourceFactory: resourceFactory, imageName: imageName, imageTitle: imageTitle, image: image)
     }
 }
+

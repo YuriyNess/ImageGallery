@@ -170,7 +170,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoGallery/Web/ResourceFactories/ImageImgurUploadResourceFactory.swift"
-            timestampString = "596901436.893996"
+            timestampString = "597005131.780913"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
@@ -202,12 +202,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoGallery/Helpers/ThreadingOperations/ImageLoadOperations.swift"
-            timestampString = "596901436.894591"
+            timestampString = "597005131.781502"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "35"
             endingLineNumber = "35"
             landmarkName = "startImageLoadOperation(url:indexPath:complition:errorComplition:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PhotoGallery/Helpers/ThreadingOperations/ImageUploadOperations.swift"
+            timestampString = "597005131.781569"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "createImageUpLoadOperation(indexPath:imageName:imageTitle:image:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PhotoGallery/Helpers/ThreadingOperations/ImageUploadOperations.swift"
+            timestampString = "597005131.782029"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "createImageUpLoadOperation(indexPath:imageName:imageTitle:image:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
